@@ -25,16 +25,16 @@ class Obd2Controller extends Controller
     // el usuario super-admin se coloca en app/providers/authserviceprovider
 
     // permisos de ver
-   // $this->middleware( 'permission: ver-categorias|crear-categorias|editar-categorias|borrar-categorias|reportes-categorias')->only('error_obd.index');
+   $this->middleware( 'permission: ver-obd2|crear-obd2|editar-obd2|borrar-obd2|reportes-obd2')->only('error_obd.index');
 
     // permisos de crear
-    //$this->middleware( 'permission: crear-categorias')->only('error_obd.create','error_obd.store');
+    $this->middleware( 'permission: crear-obd2')->only('error_obd.create','error_obd.store');
 
     // permisos de crear
-    //$this->middleware( 'permission: editar-categorias')->only('error_obd.update','error_obd.edit');
+    $this->middleware( 'permission: editar-obd2')->only('error_obd.update','error_obd.edit');
 
     // permisos de borrar
-    //$this->middleware( 'permission: borrar-categorias')->only('error_obd.destroy');
+    $this->middleware( 'permission: borrar-obd2')->only('error_obd.destroy');
 
     }
 

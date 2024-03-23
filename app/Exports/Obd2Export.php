@@ -16,7 +16,7 @@ class Obd2Export implements FromView, ShouldAutoSize
    public function view(): View
     {
         return view('app.obd2.listado_excel', [
-            'error_obd' => Obd2::select('id','codigo','descripcion')
+            'error_obd' => Obd2::select('codigo','descripcion')
                         ->orderBy('id')->get()
         ]);
     }

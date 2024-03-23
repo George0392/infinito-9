@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         'email'    => 'root@123.com',
         'password' => bcrypt('18262688')
         ]);
-        // $root->assignRole('Administrador');
+        $root->assignRole('Administrador');
 
         // usuario con el rol admin
         $admin     =   User::create([
@@ -29,27 +29,27 @@ class UserSeeder extends Seeder
         'email'    => 'admin@123.com',
         'password' => bcrypt('123456')
         ]);
-        // $admin->assignRole('Administrador');
+        $admin->assignRole('Administrador');
 
         $gerente   = User::create([
         'name'     => 'Gerente',
         'email'    => 'gerente@123.com',
         'password' => bcrypt('123456')
         ]);
-        // $gerente->assignRole('Gerente');
+        $gerente->assignRole('Gerente');
 
         $vendedor= User::create([
         'name'     => 'vendedor',
         'email'    => 'vendedor@123.com',
         'password' => bcrypt('123456')
         ]);
-        // $vendedor->assignRole('Vendedor');
+        $vendedor->assignRole('Vendedor');
 
         $cajero= User::create([
         'name'     => 'cajero',
         'email'    => 'cajero@123.com',
         'password' => bcrypt('123456')
         ]);
-        // $cajero->assignRole('Cajero');
+        $cajero->assignRole('Cajero');
     }
 }

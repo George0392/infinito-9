@@ -48,6 +48,21 @@ return [
                     'url'  => 'Importar/import',
                     'icon'    => 'fas fa-fw fa-cogs',
                 ],
+
+                [
+                    'text' => 'Roles y Permisos',
+                    'url'  => 'roles',
+                    'icon'    => 'fas fa-fw fa-lock',
+                ],
+
+                [
+                    'text' => 'Usuarios',
+                    'url'  => 'usuarios',
+                    'icon'    => 'fas fa-fw fa-users',
+                ],
+
+
+
                 [
                     'text'    => 'level_one',
                     'url'     => '#',

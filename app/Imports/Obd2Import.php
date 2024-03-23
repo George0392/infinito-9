@@ -6,12 +6,17 @@ use App\Models\Obd2;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\RemembersChunkOffset;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use Maatwebsite\Excel\Concerns\WithUpserts;
 
-
-class Obd2Import implements ToModel, WithChunkReading
+class Obd2Import implements ToModel, WithChunkReading, WithUpserts
 {
 
 use RemembersChunkOffset;
+
+    public function uniqueBy()
+    {
+        return 'codigo';
+    }
 
     public function model(array $row)
     {

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RolesController;
+use App\Http\Controllers\UsuariosController;
 
 use App\Http\Controllers\Obd2Controller;
 
@@ -15,6 +17,9 @@ Auth::routes();
 // ###############################################################
 
 Route::group(['middleware' => ['auth']], function () {
+
+Route::resource('roles', RolesController::class);
+Route::resource('usuarios', UsuariosController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('inicio');
 
