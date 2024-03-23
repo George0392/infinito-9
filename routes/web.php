@@ -18,6 +18,9 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('inicio');
 
+//Importar datos a BD
+    Route::get('Importar/import','App\Http\Controllers\DBimportController@index')->name('import-DB');
+
 
 
 // ###########################################################################################
@@ -37,7 +40,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Imprimir csv
     Route::get('Reportes/Obd2/listado_csv','App\Http\Controllers\Obd2Controller@listado_csv')->name('listado_obd2.csv');
 //Importar categorias
-   // Route::post('Importar/Obd2/importar_categorias','App\Http\Controllers\DBimportController@import_obd2')->name('import-obd2');
+   Route::post('Importar/Obd2/importar_obd2','App\Http\Controllers\DBimportController@import_obd2')->name('import-obd2');
 
 
 
