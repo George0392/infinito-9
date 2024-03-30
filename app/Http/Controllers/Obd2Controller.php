@@ -49,7 +49,7 @@ class Obd2Controller extends Controller
              ->orWhere('descripcion', 'like', '%'.Input::get('searchtext').'%')
              ->orderByDesc('id')
              ->paginate(30);
-            toastr()->info(' Registros Cargados Exitosamente','Exito');
+            // toastr()->info(' Registros Cargados Exitosamente','Exito');
         return view('app.obd2.index',compact('error_obd','cuenta'));
 
     }

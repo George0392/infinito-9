@@ -17,11 +17,14 @@
   ################################################################################# --}}
 
   {{-- @can('borrar-categorias') --}}
-  {!! Form::open(['class' => 'formulario-eliminar ','route'=>['obd2.destroy',$obd->id],'method'=>'DELETE']) !!}
+  <form  action=" {{ route('obd2.destroy',$obd->id) }} " method="post" class="formulario-eliminar" >
+    @csrf
+    @method('DELETE')
 
-    <button type="submit" class="btn btn-link  text-secondary"><i class="fa fa-trash fa-2x "></i></button>
+    <button type="submit" class="btn btn-link text-secondary "><i class="fa fa-trash fa-2x "></i></button>
   
-  {!! Form::close() !!}
+</form>
+
   {{-- @endcan --}}
 </div>
 </div>

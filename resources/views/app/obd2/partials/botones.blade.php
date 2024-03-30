@@ -9,21 +9,21 @@
 	</button>
 
 		<ul class="dropdown-menu" role="menu">
-			<li>
-				<a href=" {{ route('listado_obd2.xlsx') }} " ><i class="fa fa-file" target="_blank"></i><span> Excel (Exportacion rapida)</span> </a>
+			<li class="ml-2 mr-1">
+				<a href=" {{ route('listado_obd2.xlsx') }} " ><i class="fa fa-file" target="_blank"></i><span> Excel (Rapida)</span> </a>
 			</li>
-			<li class="divider"></li>
-			<li>
-				<a href=" {{ route('listado_obd2.csv') }} " ><i class="fa fa-file" target="_blank"></i><span> CSV  (Exportacion rapida)</span> </a>
+
+			<li class="ml-2 mr-1">
+				<a href=" {{ route('listado_obd2.csv') }} " ><i class="fa fa-file" target="_blank"></i><span> CSV  (Rapida)</span> </a>
 			</li>
-			<li class="divider"></li>
-			<li>
-				<a href=" {{ route('listado_obd2.pdf') }} "  target="_blank" ><i class="fa fa-file-pdf"></i></i><span> PDF  (Exportacion lenta)</span> </a>
+
+			<li class="ml-2 mr-1">
+				<a href=" {{ route('listado_obd2.pdf') }} "  target="_blank" ><i class="fa fa-file-pdf"></i></i><span> PDF  (Lenta)</span> </a>
 			</li>
 			<li class="divider"></li>
 		</ul>
 	</div>
-	
+
 </div>
 
 {{-- @endcan --}}
@@ -31,7 +31,9 @@
 {{-- @can('crear-categorias') --}}
 
 {{-- Boton Nuevo --}}
-<a href="{{ route('obd2.create') }}" class="btn btn-primary" ><i class="fa fa-plus " ></i><span></span> Nuevo </a>
+<a href="{{ route('obd2.create') }}" class="btn btn-primary" ><i class="fa fa-plus " ></i><span></span>  </a>
+
+
 
 {{-- @endcan --}}
 

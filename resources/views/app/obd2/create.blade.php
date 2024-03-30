@@ -14,12 +14,12 @@
             <div class="col-md-12">
 
                 <div class="card">
-                    @include('app.obd2.partials.error')
                     <div class="card-body">
-                        
-                        {{ Form::open(['class' => 'formulario-crear','route'=> 'obd2.store', 'files' => true]) }}
-                        @include('app.obd2.partials.form')
-                        {{ Form::close() }}
+
+                        <form action="{{ route('obd2.store') }}" method="post" class="formulario-crear">
+                            @csrf
+                            @include('app.obd2.partials.form')
+                        </form>
                         
                     </div>
                     

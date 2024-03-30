@@ -1,10 +1,18 @@
-{{ Form::open(['class'=>'form-inline','route' => ['obd2.index'],'method'=>'GET','autocomplete'=>'off', 'role'=>'search']) }}
-  <div class="form-group">
-	<div class="input-group">
-		<input type="text" class="form-control " name="searchtext" placeholder="Buscar Errores obd2">
-		<span class="input-group-btn ">
-			<button type="submit" class="btn  btn-primary" > <i class="fa fa-search"></i></button>
-		</span>
-	</div>
-</div>
-{{ Form::close() }}
+<form action=" {{ route('obd2.index') }} " method="GET"  class="form-inline" autocomplete="off" >
+	{{-- @csrf --}}
+
+<x-adminlte-input name="searchtext" placeholder="Buscar">
+
+     <x-slot name="appendSlot">
+        <x-adminlte-button theme="outline-primary" label="Buscar" type="submit" />
+    </x-slot>
+
+    <x-slot name="prependSlot">
+        <div class="input-group-text text-primary">
+            <i class="fas fa-search"></i>
+        </div>
+    </x-slot>
+
+</x-adminlte-input>
+
+</form>

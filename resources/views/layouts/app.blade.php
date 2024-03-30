@@ -50,6 +50,7 @@
 <script src="{{ asset('assets/js/sweetalert2@11.js') }}"></script>
 <script src="{{ asset('personales/js/formulario-sweetalert.js') }}"></script>
 <script src="{{ asset('personales/js/toastr.min.js') }}"></script>
+ @livewireScripts
 @endpush
 
 {{-- Add common CSS customizations --}}
@@ -58,5 +59,6 @@
 
 <link href="{{ asset('assets/css/sweetalert.css') }}" rel="stylesheet" type="text/css"/>
 <link href="{{ asset('personales/css/toastr.min.css') }}" rel="stylesheet" type="text/css"/>
+@livewireStyles
 
 @endpush

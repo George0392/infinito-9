@@ -1,16 +1,28 @@
 <div class="form-group col-md-12 ">
-    {{ Form::label ('codigo','Codigo:') }}
-    {{ Form::text ('codigo',null, ['placeholder'=>'Numero de Codigo','class'=>'form-control']) }}
+
+    <x-adminlte-input name="codigo" label="Codigo" placeholder="Numero Codigo" class="form-control" >
+    <x-slot name="prependSlot">
+        <div class="input-group-text">
+            <i class="fas fa-tag"></i>
+        </div>
+    </x-slot>
+    </x-adminlte-input>
+
 </div>
 
 <div class="form-group col-md-12 ">
-    {{ Form::label ('descripcion','Descripcion:') }}
-    {{ Form::textarea ('descripcion',null, ['placeholder'=>'Descripcion del Codigo','class'=>'form-control']) }}
+        <x-adminlte-textarea name="descripcion" label="Descripcion" placeholder="Descripcion" class="form-control" >
+    <x-slot name="prependSlot">
+        <div class="input-group-text">
+            <i class="fas fa-pen"></i>
+        </div>
+    </x-slot>
+    </x-adminlte-input>
 </div>
 
 
 <div class="form-group col-md-12 ">
-    {{-- {{ Form::submit('Guardar', ['class'=>'btn btn-primary']) }} --}}
-    {{ Form::button('<i class="fa fa-save "></i><span> Guardar</span>', ['type' => 'submit', 'class' => 'btn btn-primary btn-lg formulario-crear'] )  }}
+<x-adminlte-button class="btn btn-lg " type="submit" label="Guardar" theme="outline-primary" icon="fas fa-lg fa-save"/>
+
 </div>
 

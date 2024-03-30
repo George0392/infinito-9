@@ -44,6 +44,5 @@
     </section>
     @endsection
     @section('scripts')
-    <script src="{{ asset('assets/js/sweetalert2@11.js') }}"></script>
-    <script src="{{ asset('personales/js/formulario-sweetalert.js') }}"></script>
+
     @endsection

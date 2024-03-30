@@ -1,11 +1,11 @@
 @extends('adminlte::master')
 
 @inject('layoutHelper', 'JeroenNoten\LaravelAdminLte\Helpers\LayoutHelper')
+@inject('preloaderHelper', 'JeroenNoten\LaravelAdminLte\Helpers\PreloaderHelper')
 
 @section('adminlte_css')
     @stack('css')
     @yield('css')
-
 @stop
 
 @section('classes_body', $layoutHelper->makeBodyClasses())
@@ -15,8 +15,8 @@
 @section('body')
     <div class="wrapper">
 
-        {{-- Preloader Animation --}}
-        @if($layoutHelper->isPreloaderEnabled())
+        {{-- Preloader Animation (fullscreen mode) --}}
+        @if($preloaderHelper->isPreloaderEnabled())
             @include('adminlte::partials.common.preloader')
         @endif
 

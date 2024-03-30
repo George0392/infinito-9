@@ -13,13 +13,13 @@
             <div class="col-md-12">
 
                 <div class="card">
-                    @include('app.obd2.partials.error')
                     <div class="card-body">
-                        
-                        {!! Form::model($error_obd, ['class' => 'formulario-editar','route'=> ['obd2.update', $error_obd->id], 'method' => 'PUT', 'files'=> true ]) !!}
-                        @include('app.obd2.partials.form-edit')
-                        {!! Form::close() !!}
-                        
+                        <form action="{{ route('obd2.update', $error_obd->id) }}" method="post" class="formulario-editar">
+        @csrf
+        @method('PUT')
+        @include('app.obd2.partials.form-edit')
+                        </form>
+
                     </div>
                     
                     
