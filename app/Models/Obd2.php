@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Obd2 extends Model
 {
+   protected $table = 'obd2';
     use HasFactory;
 
      protected $fillable = [

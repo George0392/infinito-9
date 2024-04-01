@@ -13,7 +13,7 @@ class CreateObd2sTable extends Migration
      */
     public function up()
     {
-        Schema::create('obd2s', function (Blueprint $table) {
+        Schema::create('obd2', function (Blueprint $table) {
             $table->id();
              $table->string('codigo',12)->unique();
             $table->string('descripcion',500)->nullable();

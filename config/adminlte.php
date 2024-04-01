@@ -33,10 +33,15 @@ return [
             'icon'        => 'fa fa-fw fa-home',
             'label_color' => 'success',
         ],
-        ['header' => 'Menu Acciones'],
+        // ['header' => 'Menu Acciones'],
         [
             'text' => 'Fallas Obd2',
             'url'  => 'Obd2',
+            'icon' => 'fas fa-fw fa-tags',
+        ],
+        [
+            'text' => 'Obd2 livewire',
+            'route'  => 'obd2.live',
             'icon' => 'fas fa-fw fa-tags',
         ],
         [

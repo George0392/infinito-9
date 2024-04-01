@@ -6,11 +6,23 @@ use App\Http\Controllers\UsuariosController;
 
 use App\Http\Controllers\Obd2Controller;
 
+// ###############################################################
+//                   rutas de livewire
+// ###############################################################
+use App\Http\Livewire\Obd2\Obd2Component;
+
+
+
 Route::get('/', function () {
     return view('auth.login');
 });
 
 Auth::routes();
+
+// ###############################################################
+//                   rutas de livewire OBD2
+// ###############################################################
+Route::get('Codigos_Obd2', Obd2Component::class)->middleware('auth')->name('obd2.live');
 
 // ###############################################################
 //                         rutas de seguridad
@@ -27,12 +39,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::get('Importar/import','App\Http\Controllers\DBimportController@index')->name('import-DB');
 
 
-
 // ###########################################################################################
-//                                     Categorias
+//                                     obd2
 // ###########################################################################################
 
-// rutas de Categorias
+// rutas de obd2
     Route::resource('Obd2', Obd2Controller::class)->names('obd2');
 //Imprimir show PDF
     Route::get('Obd2/{Obd2}/descargarpdf','App\Http\Controllers\Obd2Controller@exportarpdf')->name('obd2.pdf');
