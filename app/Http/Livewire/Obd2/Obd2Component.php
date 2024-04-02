@@ -10,6 +10,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
 use Maatwebsite\Excel\Facades\Excel;
+
 use App\Exports\Obd2Export;
 
 class Obd2Component extends Component
@@ -167,6 +168,7 @@ class Obd2Component extends Component
         $sql = Obd2::findOrFail($id);
         // dd($sql);
         //campos a rellenar
+        $this->selected_id = $sql->id;
         $this->codigo      = $sql->codigo;
         $this->descripcion = $sql->descripcion;
 
@@ -180,8 +182,8 @@ class Obd2Component extends Component
     {
          $rules =
         [
-            'nombre' => 'required|min:3|unique:obd2,nombre,'.$this->selected_id,
-            'status' => 'required|not_in:Seleccionar',
+            'codigo' => 'required|min:3|unique:obd2,codigo,'.$this->selected_id,
+            'descripcion' => 'required',
         ];
 
         $this->validate($rules,$this->messages);
@@ -191,34 +193,10 @@ class Obd2Component extends Component
         // *************************************************
 
             $obd2->update([
-            'nombre'      => $this->nombre,
+            'codigo'      => $this->codigo,
             'descripcion' => $this->descripcion,
-            'status'      => $this->status,
 
                 ]);
-
-            if ($this->imagen)
-            {
-                $custom_fileName   = uniqid() . '.' . $this->imagen->extension();
-                $this->imagen->storeAs('img/obd2', $custom_fileName);
-            // guardar nombre de imagen anterior
-                $image_name = $obd2->imagen;
-
-                $obd2->imagen = $custom_fileName;
-                $obd2->save();
-
-                // eliminar basura (imagen anterior)
-                if ($image_name != null)
-                {
-                    if (file_exists('img/obd2' . '/' . $image_name))
-                    {
-                        unlink('img/obd2' . '/' . $image_name);
-                        $exito = ' Imagen Residual Eliminada Exitosamente ';
-                        $this->exito($exito);
-                    }
-
-                }
-            }
 
             $this->resetUI();
 
@@ -248,7 +226,7 @@ class Obd2Component extends Component
 // Exportar
 // ***********************************************************
 
-public function excel()
+    public function excel()
     {
         // para generar el archivo se debe colocar:
         // php artisan make:export Obd2Export --model=Obd2
@@ -257,6 +235,15 @@ public function excel()
         return Excel::download(new Obd2Export,'listado_obd2.xlsx');
     }
 
+    public function csv()
+    {
+        // para generar el archivo se debe colocar:
+        // php artisan make:export Obd2Export --model=Obd2
+        // luego ir a app/Exports y crear la consulta en el archivo creado
 
+       return (new Obd2Export)->download('listado_categorias.csv', \Maatwebsite\Excel\Excel::CSV, ['Content-Type' => 'text/csv',]);
+
+
+    }
 
 }
