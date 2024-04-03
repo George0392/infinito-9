@@ -1,30 +1,24 @@
-      {{-- ****************************************************************** --}}
-      {{-- Nombre --}}
-      {{-- ****************************************************************** --}}
+{{-- ****************************************************************** --}}
+{{-- Codigo --}}
+{{-- ****************************************************************** --}}
 
-        <label >Codigo:</label>
-        <br>
-        @error('codigo') <span class="text-danger">{{ $message }}</span> @enderror
+<x-adminlte-input name="codigo" label="Codigo" autofocus type="text" wire:model.defer="codigo" placeholder="Nombre de Codigo" label-class="text-lightblue"  minlength="4" maxlength="8" class="text-uppercase">
+    <x-slot name="prependSlot">
+        <div class="input-group-text">
+            <i class="fas fa-user text-lightblue"></i>
+        </div>
+    </x-slot>
+</x-adminlte-input>
 
-      <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" ><i class="fa fa-tag"></i></span>
-          </div>
 
-          <input autofocus type="text" wire:model.defer="codigo" class="form-control" id="_cat" placeholder="Nombre de Codigo" >
+{{-- ****************************************************************** --}}
+{{-- Descripcion --}}
+{{-- ****************************************************************** --}}
 
-      </div>
-
-      {{-- ****************************************************************** --}}
-      {{-- Descripcion --}}
-      {{-- ****************************************************************** --}}
-
-      <label >Descripcion:</label>
-
-      <div class="input-group mb-3">
-          <div class="input-group-prepend">
-          <span class="input-group-text" ><i class="fa fa-pen"></i></span>
-          </div>
-          <input type="text" wire:model.defer="descripcion" class="form-control" placeholder="Descripcion de Codigo" >
-
-      </div>
+<x-adminlte-textarea name="descripcion" label="Descripcion" autofocus type="text" wire:model.defer="descripcion" placeholder="Descripcion de Codigo" label-class="text-lightblue">
+    <x-slot name="prependSlot">
+        <div class="input-group-text">
+            <i class="fas fa-pen text-lightblue"></i>
+        </div>
+    </x-slot>
+</x-adminlte-input>

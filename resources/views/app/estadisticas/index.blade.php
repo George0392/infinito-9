@@ -4,9 +4,10 @@
 		<div class="row">
 
 {{-- ******************************************************** --}}
-{{-- Categorias --}}
+{{-- obd2 --}}
 {{-- ******************************************************** --}}
 
+@can('obd2-abrir')
 			<div class="col-md-3">
 				<div class="card bg-success">
 					<div class="card-body">
@@ -16,12 +17,12 @@
 						<span>{{ $cont_obd2 }}</span>
 						</h2>
 						<p class="m-b-0 text-right">
-							<a href="{{ route('obd2.index') }}" class="text-white">Ver más...</a>
+							<a href="{{ route('obd2.live') }}" class="text-white">Ver más...</a>
 						</p>
 					</div>
 				</div>
 			</div>
-
+@endcan
 {{-- ******************************************************** --}}
 {{-- Productos --}}
 {{-- ******************************************************** --}}

@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 use Maatwebsite\Excel\Facades\Excel;
 
+use App\Http\Requests\StoreObd2Request;
+use App\Http\Requests\UpdateObd2Request;
+
+use Jantinnerezo\LivewireAlert\LivewireAlert;
+
 use App\Exports\Obd2Export;
 
 class Obd2Component extends Component
@@ -21,6 +26,7 @@ class Obd2Component extends Component
 // ***********************************************************
     use WithFileUploads;
     use WithPagination;
+     use LivewireAlert;
 
     protected $paginationTheme = 'bootstrap';
 
@@ -63,6 +69,7 @@ class Obd2Component extends Component
          ])
         ->extends('app2.plantilla')
         ->section('content_body');
+
     }
 
 // ***********************************************************
@@ -99,22 +106,33 @@ class Obd2Component extends Component
         $this->emit('alert', ['type' => 'error', 'message' => $msg1 . ' ' .$this->componente . '  ' . $msg2]);
 
     }
+// ****************************************************************
+// validaciones antes de guardar
+// ****************************************************************
 
-
-     public function exito($msg)
+    protected function reglas_guardar(): array
     {
-
-        $this->emit('alert', ['type' => 'success', 'message' => $this->componente . '  ' . $msg]);
-
+    return (new StoreObd2Request())->rules();
     }
 
-    protected $messages =
-        [
-            'codigo.required' => 'Nombre Obligatorio',
-            'codigo.unique'   => 'Nombre ya existe',
-            'codigo.min'      => 'Nombre  debe tener al menos 3 caracteres',
+    protected function msj_guardar(): array
+    {
+    return (new StoreObd2Request())->messages();
+    }
+// ****************************************************************
+// validaciones antes de actualizar
+// ****************************************************************
 
-        ];
+    // protected function reglas_guardar(): array
+    // {
+    // return (new UpdateObd2Request())->rules();
+    // }
+
+    protected function msj_actualizar(): array
+    {
+    return (new UpdateObd2Request())->messages();
+    }
+
 
 
 
@@ -138,13 +156,7 @@ class Obd2Component extends Component
     public function guardar()
     {
 
-        $rules =
-        [
-            'codigo' => 'required|unique:obd2|min:3',
-            'descripcion' => 'required',
-        ];
-
-        $this->validate($rules,$this->messages);
+        $this->validate($this->reglas_guardar(),$this->msj_guardar());
 
         $obd2 = Obd2::Create([
             'codigo'      => $this->codigo,
@@ -153,9 +165,10 @@ class Obd2Component extends Component
 
             $this->resetUI();
 
-            $exito = ' Creado exitosamente ';
+            $this->alert('success', 'Registro Almacenado');
 
-            $this->exito($exito);
+            // return redirect()->route('obd2.index');
+
 
     }
 
@@ -182,11 +195,11 @@ class Obd2Component extends Component
     {
          $rules =
         [
-            'codigo' => 'required|min:3|unique:obd2,codigo,'.$this->selected_id,
+            'codigo' => 'required|string|max:12|unique:obd2,codigo,'.$this->selected_id,
             'descripcion' => 'required',
         ];
 
-        $this->validate($rules,$this->messages);
+        $this->validate($rules,$this->msj_actualizar());
 
             $obd2 = Obd2::find($this->selected_id);
 
@@ -200,9 +213,7 @@ class Obd2Component extends Component
 
             $this->resetUI();
 
-            $exito = ' Actualizado exitosamente ';
-
-            $this->exito($exito);
+            $this->alert('success', 'Registro Actualizado');
 
     }
 
@@ -216,8 +227,7 @@ class Obd2Component extends Component
             $obd2 = Obd2::find($id);
             $obd2->delete();
 
-            $exito = 'Eliminado Exitosamente ';
-            $this->exito($exito);
+            $this->alert('success', 'Registro Eliminado');
             $this->resetUI();
     }
 
@@ -232,6 +242,9 @@ class Obd2Component extends Component
         // php artisan make:export Obd2Export --model=Obd2
         // luego ir a app/Exports y crear la consulta en el archivo creado
 
+        $this->alert('success', 'Registros exportados a Excel con Exito', [
+                        'position' => 'center'
+                    ]);
         return Excel::download(new Obd2Export,'listado_obd2.xlsx');
     }
 
@@ -240,6 +253,10 @@ class Obd2Component extends Component
         // para generar el archivo se debe colocar:
         // php artisan make:export Obd2Export --model=Obd2
         // luego ir a app/Exports y crear la consulta en el archivo creado
+
+        $this->alert('success', 'Registros exportados a CSV con Exito', [
+                        'position' => 'center'
+                    ]);
 
        return (new Obd2Export)->download('listado_categorias.csv', \Maatwebsite\Excel\Excel::CSV, ['Content-Type' => 'text/csv',]);
 

@@ -17,148 +17,206 @@ class PermisosSeeder extends Seeder
 
         // crear permisos de vista
 
+// *************************************
+// ADMINISTRADOR
+// *************************************
+
        $permisos_admin = [
 
         'importar',
 
         // tabla roles
-       'ver-rol',
-       'crear-rol',
-       'editar-rol',
-       'borrar-rol',
-
-       // tabla usuarios
-       'ver-usuarios',
-       'crear-usuarios',
-       'editar-usuarios',
-       'borrar-usuarios',
-       'reportes-usuarios',
-
-       // tabla Category
-       'ver-categorias',
-       'crear-categorias',
-       'editar-categorias',
-       'borrar-categorias',
-       'reportes-categorias',
-
-       // tabla proveedores
-       'ver-proveedores',
-       'crear-proveedores',
-       'editar-proveedores',
-       'borrar-proveedores',
-       'reportes-proveedores',
-
-       // tabla Clientes
-       'ver-clientes',
-       'crear-clientes',
-       'editar-clientes',
-       'borrar-clientes',
-       'reportes-clientes',
-
-       // tabla productos
-       'ver-productos',
-       'crear-productos',
-       'editar-productos',
-       'borrar-productos',
-       'reportes-productos',
-
-       // tabla Compras
-       'ver-compras',
-       'crear-compras',
-       'editar-compras',
-       'borrar-compras',
-       'reportes-compras',
-
-       // tabla ventas
-       'ver-ventas',
-       'crear-ventas',
-       'editar-ventas',
-       'borrar-ventas',
-       'reportes-ventas',
-
-       ]; 
-       
-
-       $permisos_gerente = [
+       'rol-ver',
+       'rol-crear',
+       'rol-editar',
+       'rol-borrar',
 
         // tabla roles
-       'ver-rol',
-       'crear-rol',
-       'editar-rol',
-       
+
+       'obd2-ver',
+       'obd2-crear',
+       'obd2-editar',
+       'obd2-borrar',
+       'obd2-abrir',
 
        // tabla usuarios
-       'ver-usuarios',
-       'crear-usuarios',
-       'editar-usuarios',
-       'borrar-usuarios',
-       'reportes-usuarios',
+       'usuarios-ver',
+       'usuarios-crear',
+       'usuarios-editar',
+       'usuarios-borrar',
+       'usuarios-reportes',
 
        // tabla Category
-       'ver-categorias',
-       'crear-categorias',
-       'editar-categorias',
-       'reportes-categorias',
+       'categorias-ver',
+       'categorias-crear',
+       'categorias-editar',
+       'categorias-borrar',
+       'categorias-reportes',
+
+       // tabla proveedores
+       'proveedores-ver',
+       'proveedores-crear',
+       'proveedores-editar',
+       'proveedores-borrar',
+       'proveedores-reportes',
 
        // tabla Clientes
-       'ver-clientes',
-       'crear-clientes',
-       'editar-clientes',
-       'reportes-clientes',
+       'clientes-ver',
+       'clientes-crear',
+       'clientes-editar',
+       'clientes-borrar',
+       'clientes-reportes',
 
        // tabla productos
-       'ver-productos',
-       'crear-productos',
-       'editar-productos',
-       'reportes-productos',
+       'productos-ver',
+       'productos-crear',
+       'productos-editar',
+       'productos-borrar',
+       'productos-reportes',
 
        // tabla Compras
-       'ver-compras',
-       'crear-compras',
-       'editar-compras',
-       'reportes-compras',
+       'compras-ver',
+       'compras-crear',
+       'compras-editar',
+       'compras-borrar',
+       'compras-reportes',
 
        // tabla ventas
-       'ver-ventas',
-       'crear-ventas',
-       'editar-ventas',
-       'reportes-ventas',
+       'ventas-ver',
+       'ventas-crear',
+       'ventas-editar',
+       'ventas-borrar',
+       'ventas-reportes',
 
        ]; 
+       
+// *************************************
+// GERENTE
+// *************************************
+       $permisos_gerente = [
+        // tabla roles
+       'rol-ver',
+       'rol-crear',
+       'rol-editar',
+       'rol-borrar',
+
+       // tabla roles
+       'obd2-ver',
+       'obd2-crear',
+       'obd2-editar',
+       'obd2-borrar',
+       'obd2-abrir',
+
+       // tabla usuarios
+       'usuarios-ver',
+       'usuarios-crear',
+       'usuarios-editar',
+       'usuarios-borrar',
+       'usuarios-reportes',
+
+       // tabla Category
+       'categorias-ver',
+       'categorias-crear',
+       'categorias-editar',
+       'categorias-borrar',
+       'categorias-reportes',
+
+       // tabla proveedores
+       'proveedores-ver',
+       'proveedores-crear',
+       'proveedores-editar',
+       'proveedores-borrar',
+       'proveedores-reportes',
+
+       // tabla Clientes
+       'clientes-ver',
+       'clientes-crear',
+       'clientes-editar',
+       'clientes-borrar',
+       'clientes-reportes',
+
+       // tabla productos
+       'productos-ver',
+       'productos-crear',
+       'productos-editar',
+       'productos-borrar',
+       'productos-reportes',
+
+       // tabla Compras
+       'compras-ver',
+       'compras-crear',
+       'compras-editar',
+       'compras-borrar',
+       'compras-reportes',
+
+       // tabla ventas
+       'ventas-ver',
+       'ventas-crear',
+       'ventas-editar',
+       'ventas-borrar',
+       'ventas-reportes',
 
 
+       ];
+
+// *************************************
+// VENDEDOR
+// *************************************
        $permisos_vendedor = [
-       
+
+        // tabla roles
+       'obd2-ver',
+       'obd2-crear',
+       'obd2-editar',
+       'obd2-abrir',
+
+       // tabla Category
+       'categorias-ver',
+
        // tabla Clientes
-       'ver-clientes',
-       'crear-clientes',
+       'clientes-ver',
+       'clientes-crear',
+       'clientes-editar',
 
        // tabla productos
-       'ver-productos',
+       'productos-ver',
 
        // tabla ventas
-       'ver-ventas',
-       'crear-ventas',
+       'ventas-ver',
+       'ventas-crear',
 
-       ]; 
+       ];
 
-
+// *************************************
+// CAJERO
+// *************************************
        $permisos_cajero = [
-       
+
+        // tabla roles
+       'obd2-ver',
+
+       // tabla Category
+       'categorias-ver',
+
        // tabla Clientes
-       'ver-clientes',
-       'crear-clientes',
-       'editar-clientes',
-       'borrar-clientes',
+       'clientes-ver',
+       'clientes-crear',
+       'clientes-editar',
 
        // tabla productos
-       'ver-productos',
+       'productos-ver',
 
        // tabla ventas
-       'crear-ventas',
+       'ventas-ver',
+       'ventas-crear',
+       'ventas-editar',
+       'ventas-borrar',
+       'ventas-reportes',
 
        ]; 
-
+// *************************************
+// FIN VISTAS
+// *************************************
 
        //########################################################################
        // Administrador
@@ -217,13 +275,6 @@ class PermisosSeeder extends Seeder
         $roles->givePermissionTo($caja);
 
        }
-        
-        
-
-
-
-
-       
 
 
     }

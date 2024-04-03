@@ -35,14 +35,10 @@ return [
         ],
         // ['header' => 'Menu Acciones'],
         [
-            'text' => 'Fallas Obd2',
-            'url'  => 'Obd2',
-            'icon' => 'fas fa-fw fa-tags',
-        ],
-        [
-            'text' => 'Obd2 livewire',
-            'route'  => 'obd2.live',
-            'icon' => 'fas fa-fw fa-tags',
+            'text'  => 'Obd2 livewire',
+            'route' => 'obd2.live',
+            'icon'  => 'fas fa-fw fa-tags',
+            'can'   => 'obd2-abrir',
         ],
         [
             'text'    => 'SysAdmin',
