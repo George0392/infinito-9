@@ -20,10 +20,10 @@
 		@forelse($obd2 as $i)
 
 		<tr>
-			<td> <strong>{{ $loop->iteration }}</strong> </td>
-			<td>{{ $i->codigo }}</td>
+			<td class= 'text-center'> <strong>{{ $loop->iteration }}</strong> </td>
+			<td class= 'text-center'>{{ $i->codigo }}</td>
 			<td>{{ $i->descripcion }}</td>
-			<td>
+			<td class= 'text-center'>
 
 				@include('livewire.obd2.partials.actions')
 

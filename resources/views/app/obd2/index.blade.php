@@ -34,9 +34,7 @@
                             @include('app.obd2.partials.table-index')
                         </div>
                     </div>
-                    <div class=" pagination justify-content-center ">
-                        {!! $error_obd->links() !!}
-                    </div>
+
                 </div>
             </div>
             

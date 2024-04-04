@@ -26,10 +26,10 @@ class PermisosSeeder extends Seeder
         'importar',
 
         // tabla roles
-       'rol-ver',
-       'rol-crear',
-       'rol-editar',
-       'rol-borrar',
+       'roles-ver',
+       'roles-crear',
+       'roles-editar',
+       'roles-borrar',
 
         // tabla roles
 
@@ -95,10 +95,10 @@ class PermisosSeeder extends Seeder
 // *************************************
        $permisos_gerente = [
         // tabla roles
-       'rol-ver',
-       'rol-crear',
-       'rol-editar',
-       'rol-borrar',
+       'roles-ver',
+       'roles-crear',
+       'roles-editar',
+       'roles-borrar',
 
        // tabla roles
        'obd2-ver',

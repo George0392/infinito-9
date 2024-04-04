@@ -42,14 +42,15 @@ class Obd2Controller extends Controller
   public function index()
     {
         $cuenta = Obd2::count();
+        $error_obd = Obd2::all();
         // Busqueda Basica
-        $error_obd =
-        Obd2::select('id','codigo','descripcion')
-             ->where('codigo', 'like', '%'.Input::get('searchtext').'%')
-             ->orWhere('descripcion', 'like', '%'.Input::get('searchtext').'%')
-             ->orderByDesc('id')
-             ->paginate(30);
-            // toastr()->info(' Registros Cargados Exitosamente','Exito');
+        // $error_obd =
+        // Obd2::select('id','codigo','descripcion')
+        //      ->where('codigo', 'like', '%'.Input::get('searchtext').'%')
+        //      ->orWhere('descripcion', 'like', '%'.Input::get('searchtext').'%')
+        //      ->orderByDesc('id')
+        //      ->paginate(30);
+        //     // toastr()->info(' Registros Cargados Exitosamente','Exito');
         return view('app.obd2.index',compact('error_obd','cuenta'));
 
     }

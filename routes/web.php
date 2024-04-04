@@ -10,7 +10,7 @@ use App\Http\Controllers\Obd2Controller;
 //                   rutas de livewire
 // ###############################################################
 use App\Http\Livewire\Obd2\Obd2Component;
-
+use App\Http\Livewire\Roles\RolesComponent;
 
 
 Route::get('/', function () {
@@ -23,6 +23,8 @@ Auth::routes();
 //                   rutas de livewire OBD2
 // ###############################################################
 Route::get('Codigos_Obd2', Obd2Component::class)->middleware('auth')->name('obd2.live');
+
+Route::get('Roles_infinito', RolesComponent::class)->middleware('auth')->name('roles.live');
 
 // ###############################################################
 //                         rutas de seguridad
