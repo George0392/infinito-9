@@ -15,7 +15,6 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 
-
 class Obd2Controller extends Controller
 {
 
@@ -42,7 +41,10 @@ class Obd2Controller extends Controller
   public function index()
     {
         $cuenta = Obd2::count();
-        $error_obd = Obd2::all();
+        $error_obd = Obd2::select('id','codigo','descripcion')
+                    ->orderByDesc('id')
+                    ->get();
+
         // Busqueda Basica
         // $error_obd =
         // Obd2::select('id','codigo','descripcion')
@@ -66,8 +68,8 @@ class Obd2Controller extends Controller
     {
 
         Obd2::create($request->all());
-        toastr()->success(' Registro Almacenado Exitosamente!','Exito');
-        return back();
+        // toastr()->success(' Registro Almacenado Exitosamente!','Exito');
+        return back()->with('message','Registro Almacenado Exitosamente');
 
     }
 
@@ -93,9 +95,10 @@ class Obd2Controller extends Controller
         $error_obd->fill($request->all())->save();
         // dd($error_obd);
 
-        toastr()->success(' Registros Editados Exitosamente','Exito');
+        // toastr()->success(' Registros Editados Exitosamente','Exito');
 
-        return redirect()->route('obd2.index');
+        // return redirect()->route('obd2.index');
+        return back()->with('message','Registro Actualizado Exitosamente');
     }
 
     public function destroy($id)
@@ -107,9 +110,9 @@ class Obd2Controller extends Controller
         // else {
         $error_obd = Obd2::findOrFail($id);
         $error_obd->delete();
-        toastr()->success(' Registros ELIMINADOS Exitosamente','Exito');
+        // toastr()->success(' Registros ELIMINADOS Exitosamente','Exito');
         // }
-        return back();
+        return back()->with('message','Registros ELIMINADOS Exitosamente');
     }
 
 

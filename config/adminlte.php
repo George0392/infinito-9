@@ -42,17 +42,12 @@ return [
         ],
 
         [
-            'text'  => 'Obd2 ',
+            'text'  => 'Reportes Obd2 ',
             'route' => 'obd2.index',
             'icon'  => 'fas fa-fw fa-tags',
         ],
 
-        [
-            'text'  => 'Roles o Cargos',
-            'route' => 'roles.live',
-            'icon'  => 'fas fa-fw fa-cogs',
-            'can'   => 'roles-abrir',
-        ],
+
 
 
         [
@@ -65,10 +60,47 @@ return [
                     'icon'    => 'fas fa-fw fa-cogs',
                 ],
 
+                // [
+                //     'text' => 'Roles y Permisos',
+                //     'url'  => 'roles',
+                //     'icon'    => 'fas fa-fw fa-lock',
+                // ],
+
+
                 [
-                    'text' => 'Roles y Permisos',
-                    'url'  => 'roles',
-                    'icon'    => 'fas fa-fw fa-lock',
+                    'text'    => 'Seguridad',
+                    'url'     => '#',
+                    'icon'  => 'fas fa-fw fa-lock',
+                    'submenu' => [
+                         [
+            'text'  => 'Roles o Cargos',
+            'route' => 'roles.live',
+            'icon'  => 'fas fa-fw fa-cogs',
+            'can'   => 'roles-abrir',
+        ],
+
+        [
+            'text'  => 'Permisos',
+            'route' => 'permisos.live',
+            'icon'  => 'fas fa-fw fa-key',
+            'can'   => 'permisos-abrir',
+        ],
+
+        [
+            'text'  => 'Asignar Permisos',
+            'route' => 'asignar.live',
+            'icon'  => 'fas fa-fw fa-edit',
+            'can'   => 'asignar-abrir',
+        ],
+
+        [
+            'text'  => 'Usuarios live',
+            'route' => 'asignar.live',
+            'icon'  => 'fas fa-fw fa-users',
+            'can'   => 'usuarios-abrir',
+        ],
+
+                    ],
                 ],
 
                 [
@@ -441,6 +473,7 @@ return [
             'asset' => true,
             'location' => 'vendor/datatables/css/dataTables.bootstrap4.min.css',
         ],
+
     ],
 ],
 'DatatablesPlugins' => [
@@ -489,20 +522,25 @@ return [
     ],
 ],
         'Select2' => [
-            'active' => false,
-            'files' => [
-                [
-                    'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js',
-                ],
-                [
-                    'type' => 'css',
-                    'asset' => false,
-                    'location' => '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.css',
-                ],
+        'active' => true,
+        'files' => [
+            [
+                'type' => 'js',
+                'asset' => true,
+                'location' => 'vendor/select2/js/select2.full.min.js',
+            ],
+            [
+                'type' => 'css',
+                'asset' => true,
+                'location' => 'vendor/select2/css/select2.min.css',
+            ],
+            [
+                'type' => 'css',
+                'asset' => true,
+                'location' => 'vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css',
             ],
         ],
+    ],
         'Chartjs' => [
             'active' => false,
             'files' => [
@@ -514,12 +552,18 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'asset' => true,
+                    'location' => 'vendor/sweetalert2/sweetalert2.min.js',
+
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => true,
+                    'location' => 'vendor/sweetalert2/sweetalert2.min.css',
                 ],
             ],
         ],

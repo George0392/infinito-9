@@ -19,6 +19,7 @@ class CreateObd2sTable extends Migration
             $table->string('descripcion',500)->nullable();
             $table->timestamps();
         });
+
     }
 
     /**

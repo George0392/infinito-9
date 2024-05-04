@@ -21,16 +21,11 @@ $('.formulario-crear').submit(function(e){
       cancelButtonText: 'Cancelar!'
       }).then((result) => {
       if (result.isConfirmed) {
-      Swal.fire(
-      'Almacenado!',
-      'Se guardo el registro.',
-      'success'
-      )
+
       this.submit()
       }
   })
 });
-
 
 // #################################################################################
 //                           fin Nuevo
@@ -60,11 +55,7 @@ $('.formulario-editar').submit(function(e){
       cancelButtonText: 'Cancelar!'
       }).then((result) => {
       if (result.isConfirmed) {
-      Swal.fire(
-      'Actualizado!',
-      'El registro a sido Modificado.',
-      'success'
-      )
+
       this.submit()
       }
   })
@@ -98,11 +89,7 @@ $('.formulario-eliminar').submit(function(e){
       cancelButtonText: 'Cancelar!'
       }).then((result) => {
       if (result.isConfirmed) {
-      Swal.fire(
-      'Eliminado!',
-      'El registro a sido eliminado.',
-      'success'
-      )
+
       this.submit()
       }
   })

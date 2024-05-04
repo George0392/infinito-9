@@ -16,12 +16,12 @@
 </div>
 
 
-    @include('livewire.roles.partials.buscar')
+    @include('livewire.asignar-permisos.partials.buscar')
 
-    @include('livewire.roles.tabla')
+    @include('livewire.asignar-permisos.tabla')
 
-    {{ $roles->links() }}
-    
+    {{ $permisos->links() }}
+
   </div>
 </div>
 
@@ -31,6 +31,6 @@
 <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
 <x-livewire-alert::flash />
 
-<script src=" {{ asset('js/alertas/alertas_roles.js') }} "> </script>
+<script src=" {{ asset('js/alertas/alertas_asignar.js') }} "> </script>
 
 @endpush

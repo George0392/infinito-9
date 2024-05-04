@@ -1,7 +1,6 @@
 {{-- titulo de la vista --}}
 @section('title','Crear Codigo OBD2')
 @show
-
 @extends('layouts.app')
 @section('content')
 <section class="section">
@@ -10,26 +9,38 @@
     </div>
     <div class="section-body">
         <div class="row">
-            
             <div class="col-md-12">
-
                 <div class="card">
                     <div class="card-body">
-
                         <form action="{{ route('obd2.store') }}" method="post" class="formulario-crear">
                             @csrf
                             @include('app.obd2.partials.form')
                         </form>
-                        
                     </div>
-                    
-                    
                 </div>
             </div>
-            
         </div>
     </div>
-    
-</div>
+    </div>
 </section>
 @endsection
+
+
+@section('js')
+    @if (session("message"))
+<script>
+$(document).ready(function() {
+    let mensaje = " {{ session('message') }} ";
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
+
+})
+
+</script>
+    @endif
+@stop

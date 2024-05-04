@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Roles;
+namespace App\Http\Livewire\Permission;
 
 use Livewire\Component;
 
@@ -15,9 +15,9 @@ use Maatwebsite\Excel\Facades\Excel;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
-use App\Exports\RoleExport;
+use App\Exports\PermissionExport;
 
-class RolesComponent extends Component
+class PermissionComponent extends Component
 {
 
 // ***********************************************************
@@ -33,7 +33,7 @@ class RolesComponent extends Component
 // Variables
 // ***********************************************************
 
-    public $name, $selected_id, $buscar, $permission ;
+    public $name, $selected_id, $buscar , $guard_name ;
 
     public $componente = ' Cargos y permisos ';
     public $titulo = 'Listado';
@@ -51,7 +51,6 @@ class RolesComponent extends Component
     {
         $this->componente;
         $this->titulo;
-
     }
 
 // ***********************************************************
@@ -61,11 +60,10 @@ class RolesComponent extends Component
     public function render()
     {
 
-        $total = Role::count();
+        $total = Permission::count();
 
-
-        return view('livewire.roles.roles-component',[
-             'roles'      => $this->Buscar(),
+        return view('livewire.permission.permission-component',[
+             'permission'      => $this->Buscar(),
              'total'      => $total,
          ])
         ->extends('app2.plantilla')
@@ -82,12 +80,12 @@ class RolesComponent extends Component
 
         if(strlen($this->buscar) > 0)
 
-            $sql = Role::where('name', 'like', '%' . $this->buscar . '%')
+            $sql = Permission::where('name', 'like', '%' . $this->buscar . '%')
                     ->orderBy('name')
                     ->paginate($this->lista);
         else
 
-            $sql = Role::orderBy('name','asc')
+            $sql = Permission::orderBy('name')
                     ->paginate($this->lista);
 
         return $sql;
@@ -124,14 +122,14 @@ class RolesComponent extends Component
 // ***********************************************************
         protected $reglas_guardar =
         [
-            'name'         => 'required|unique:roles,name|min:3',
+            'name'         => 'required|unique:permissions,name|min:3',
         ];
 
     protected $mensajes =
         [
-            'name.required' => 'Rol o Cargo Obligatorio',
-            'name.unique'   => 'Rol o Cargo ya existe',
-            'name.min'      => 'Rol o Cargo  debe tener al menos 3 caracteres',
+            'name.required' => 'Permiso Obligatorio',
+            'name.unique'   => 'Permiso ya existe',
+            'name.min'      => 'Permiso  debe tener al menos 3 caracteres',
         ];
 
 
@@ -145,7 +143,7 @@ class RolesComponent extends Component
 
        $this->validate($this->reglas_guardar,$this->mensajes);
 
-        $roles = Role::create([
+        $permisos = Permission::create([
             'name' => $this->name]);
 
             $this->resetUI();
@@ -160,8 +158,8 @@ class RolesComponent extends Component
 
     public function Editar($id)
     {
-        $sql = Role::findOrFail($id);
-
+        $sql = Permission::findOrFail($id);
+        // dd($sql);
         //campos a rellenar
         $this->selected_id = $sql->id;
         $this->name      = $sql->name;
@@ -176,18 +174,14 @@ class RolesComponent extends Component
     {
          $rules =
         [
-            'name' => 'required|string|max:12|unique:roles,name,'.$this->selected_id,
+            'name' => 'required|string|unique:permissions,name,'.$this->selected_id,
         ];
 
         $this->validate($rules);
 
-            $roles = Role::find($this->selected_id);
-
-        // *************************************************
-
-            $roles->update([
+            $permisos = Permission::find($this->selected_id);
+            $permisos->update([
             'name'      => $this->name,
-
                 ]);
 
             $this->resetUI();
@@ -202,38 +196,21 @@ class RolesComponent extends Component
 
     public function eliminar($id)
     {
-        $permisos_cuenta = Role::find($id)->permissions->count();
+        $Roles_cuenta = Permission::find($id)->getRoleNames()->count();
 
-        if($permisos_cuenta > 0)
+        if($Roles_cuenta > 0)
         {
-            $this->alert('error', 'Imposible eliminar el Rol ya que tiene permisos asociados');
+            $this->alert('error', 'Imposible eliminar el Permiso ya que tiene Roles o Cargos asociados');
             return;
         }
         else
         {
-            Role::find($id)->delete();
+            Permission::find($id)->delete();
             $this->alert('success', 'Registro Eliminado');
         }
             $this->resetUI();
     }
 
-// ***********************************************************
-// Asignar Roles
-// ***********************************************************
-
-    public function AsignarRoles($rolesList)
-    {
-        if ($this->userSelected > 0 )
-        {
-            $user = User::find($this->userSelected);
-            if ($user)
-            {
-                $user->syncRoles($rolesList);
-                 $this->alert('success', 'Roles Asignados Correctamente');
-                 $this->resetUI();
-            }
-        }
-    }
 
 // ***********************************************************
 // Exportar
@@ -242,26 +219,26 @@ class RolesComponent extends Component
     public function excel()
     {
         // para generar el archivo se debe colocar:
-        // php artisan make:export RoleExport --model=Role
+        // php artisan make:export PermissionExport --model=Permission
         // luego ir a app/Exports y crear la consulta en el archivo creado
 
         $this->alert('success', 'Registros exportados a Excel con Exito', [
                         'position' => 'center'
                     ]);
-        return Excel::download(new RoleExport,'listado_roles.xlsx');
+        return Excel::download(new PermissionExport,'listado_permisos.xlsx');
     }
 
     public function csv()
     {
         // para generar el archivo se debe colocar:
-        // php artisan make:export RoleExport --model=Role
+        // php artisan make:export PermissionExport --model=Permission
         // luego ir a app/Exports y crear la consulta en el archivo creado
 
         $this->alert('success', 'Registros exportados a CSV con Exito', [
                         'position' => 'center'
                     ]);
 
-       return (new RoleExport)->download('listado_categorias.csv', \Maatwebsite\Excel\Excel::CSV, ['Content-Type' => 'text/csv',]);
+       return (new PermissionExport)->download('listado_categorias.csv', \Maatwebsite\Excel\Excel::CSV, ['Content-Type' => 'text/csv',]);
 
 
     }

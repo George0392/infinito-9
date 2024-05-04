@@ -15,6 +15,6 @@ class Obd2Seeder extends Seeder
      */
     public function run()
     {
-        $fallas = Obd2::factory(200)->create();
+        $fallas = Obd2::factory(2000)->create();
     }
 }

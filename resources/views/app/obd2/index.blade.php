@@ -12,19 +12,16 @@
             
             <div class="col-lg-12">
                 <div class="card">
-                    <div class="card-body d-flex">
+                    {{-- <div class="card-body d-flex"> --}}
                         {{-- Buscar Obd2 --}}
-                        @include('app.obd2.partials.search')
+                        {{-- @include('app.obd2.partials.search') --}}
                         {{-- Botones --}}
-                        @include('app.obd2.partials.botones')
-                    </div>
+                        {{-- @include('app.obd2.partials.botones') --}}
+                    {{-- </div> --}}
                     
                 </div>
             </div>
 
-            <div class="row">
-               <strong class="ml-auto" >Total de registros:  {{ $cuenta }}</strong>
-            </div>
 
             <div class="row">
                 <div class="col-lg-12">

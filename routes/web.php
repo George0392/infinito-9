@@ -11,7 +11,8 @@ use App\Http\Controllers\Obd2Controller;
 // ###############################################################
 use App\Http\Livewire\Obd2\Obd2Component;
 use App\Http\Livewire\Roles\RolesComponent;
-
+use App\Http\Livewire\Permission\PermissionComponent;
+use App\Http\Livewire\AsignarPermisos\AsignarComponent;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -25,6 +26,10 @@ Auth::routes();
 Route::get('Codigos_Obd2', Obd2Component::class)->middleware('auth')->name('obd2.live');
 
 Route::get('Roles_infinito', RolesComponent::class)->middleware('auth')->name('roles.live');
+
+Route::get('Permisos_infinito', PermissionComponent::class)->middleware('auth')->name('permisos.live');
+
+Route::get('Asignar_Permisos', AsignarComponent::class)->middleware('auth')->name('asignar.live');
 
 // ###############################################################
 //                         rutas de seguridad

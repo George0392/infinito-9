@@ -32,6 +32,22 @@
 </div>
 </section>
 @endsection
-@section('scripts')
 
-@endsection
+@section('js')
+    @if (session("message"))
+<script>
+$(document).ready(function() {
+    let mensaje = " {{ session('message') }} ";
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 1500
+    });
+
+})
+
+</script>
+    @endif
+@stop

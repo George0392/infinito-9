@@ -28,3 +28,22 @@
   {{-- @endcan --}}
 </div>
 </div>
+
+@section('js')
+    @if (session("message"))
+<script>
+$(document).ready(function() {
+    let mensaje = " {{ session('message') }} ";
+    Swal.fire({
+        position: "center",
+        icon: "success",
+        title: mensaje,
+        showConfirmButton: false,
+        timer: 2000
+    });
+
+})
+
+</script>
+    @endif
+@stop
