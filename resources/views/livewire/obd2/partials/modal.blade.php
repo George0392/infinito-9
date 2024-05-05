@@ -26,11 +26,11 @@ Por favor espere mientras se guardan los datos...
 
          @if($selected_id <1)
 
-         <x-adminlte-button type="button" wire:click="$emit('crear')" label="Guardar" theme="outline-primary" icon="fas fa-lg fa-save"/>
+         <x-adminlte-button type="button" onclick="Crear()" label="Guardar" theme="outline-primary" icon="fas fa-lg fa-save"/>
 
          @else
 
-         <x-adminlte-button type="button" wire:click="$emit('modificar')" label="Actualizar" theme="outline-primary" icon="fas fa-lg fa-save"/>
+         <x-adminlte-button type="button" onclick="Modificar()" label="Actualizar" theme="outline-success" icon="fas fa-lg fa-save"/>
 
         @endif
 

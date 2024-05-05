@@ -21,8 +21,11 @@
   eliminar
   ################################################################################# --}}
 @can('obd2-borrar')
-  <a wire:click="$emit('borrar',{{ $i->id }} )"
-  class=" btn text-secondary"><i class="fa fa-trash fa-2x  "></i></a>
+
+  <a onclick="Borrar({{ $i->id }})" class=" btn text-secondary">
+    <i class="fa fa-trash fa-2x  "></i>
+  </a>
+
 @endcan
 
 </div>

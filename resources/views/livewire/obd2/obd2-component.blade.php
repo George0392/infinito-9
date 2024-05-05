@@ -31,5 +31,5 @@
 <script src="{{ asset('vendor/livewire-alert/livewire-alert.js') }}"></script>
 <x-livewire-alert::flash />
 
-<script src=" {{ asset('js/alertas/alertas_obd2.js') }} "> </script>
+<script src=" {{ asset('js/alertas/alertas_CRUD.js') }} "> </script>
 @endpush

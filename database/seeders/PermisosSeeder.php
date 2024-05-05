@@ -31,7 +31,19 @@ class PermisosSeeder extends Seeder
        'roles-editar',
        'roles-borrar',
 
-        // tabla roles
+       // tabla permisos
+       'permisos-ver',
+       'permisos-crear',
+       'permisos-editar',
+       'permisos-borrar',
+
+        // tabla asignar
+       'asignar-permisos-ver',
+       'asignar-permisos-crear',
+       'asignar-permisos-editar',
+       'asignar-permisos-borrar',
+
+        // tabla obd2
 
        'obd2-ver',
        'obd2-crear',
@@ -101,6 +113,18 @@ class PermisosSeeder extends Seeder
        'roles-borrar',
 
        // tabla roles
+       'permisos-ver',
+       'permisos-crear',
+       'permisos-editar',
+       'permisos-borrar',
+
+       // tabla asignar
+       'asignar-permisos-ver',
+       'asignar-permisos-crear',
+       'asignar-permisos-editar',
+       'asignar-permisos-borrar',
+
+       // tabla obd2
        'obd2-ver',
        'obd2-crear',
        'obd2-editar',

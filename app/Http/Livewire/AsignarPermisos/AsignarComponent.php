@@ -34,6 +34,12 @@ class AsignarComponent extends Component
 
     private $lista = 20;
 
+    // protected $listeners = ['Sincronizar_Todos','Eliminar_Todos'];
+
+public $listeners = ['permisos'=>'Sincronizar_Todos',
+                     'quitar'=>'Eliminar_Todos'
+                    ];
+
 // ***********************************************************
 // Cargar primeras variables
 // ***********************************************************
@@ -101,11 +107,11 @@ class AsignarComponent extends Component
 
     }
 
-    public $listeners = ['revokeall' => 'RemoveAll'];
+
 // ***********************************************************
 // limpiar checkbox
 // ***********************************************************
-public function  RemoveAll()
+public function  Eliminar_Todos()
 {
     if ( $this->role == 'Elegir')
     {
@@ -116,7 +122,7 @@ public function  RemoveAll()
 
     $role = Role::find($this->role);
     $role->syncPermissions([0]);
-    $this->alert('success', "se eliminaron los permisos del rol $role->name" );
+    $this->alert('success', "Se eliminaron los Permisos del rol $role->name" );
 }
 
 // ***********************************************************

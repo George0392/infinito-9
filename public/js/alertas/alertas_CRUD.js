@@ -1,37 +1,63 @@
     // #################################################################
-    // Asignar todos los permisos al rol
+    // Crear
     // #################################################################
 
-    function Todos_Permisos() {
+    function Crear() {
 
         Swal.fire({
-            title: 'Esta seguro de Asignar Todos los Permisos? ',
+            title: 'Esta seguro de Guardar? ',
             text: "Esta accion no se puede corregir!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Si, Asignar!',
+            confirmButtonText: 'Si, Guardar!',
             cancelButtonText: 'Cancelar!'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.livewire.emit('permisos');
+                window.livewire.emit('crear');
                 Swal.close();
             }
         });
     }
     // #################################################################
-    // Fin Asignar
+    // Fin Crear
     // #################################################################
 
     // #################################################################
-    // Eliminar todos los permisos al rol
+    // Editar
     // #################################################################
 
-    function Eliminar_Permisos() {
+    function Modificar() {
 
         Swal.fire({
-            title: 'Esta seguro de Eliminar todos los permisos? ',
+            title: 'Esta seguro de Actualizar? ',
+            text: "Esta accion no se puede corregir!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, Actualizar!',
+            cancelButtonText: 'Cancelar!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.livewire.emit('modificar');
+                Swal.close();
+            }
+        });
+    }
+    // #################################################################
+    // Fin Editar
+    // #################################################################
+
+    // #################################################################
+    // Eliminar
+    // #################################################################
+
+    function Borrar(id) {
+
+        Swal.fire({
+            title: 'Esta seguro de Eliminar? ',
             text: "Esta accion no se puede corregir!",
             icon: 'warning',
             showCancelButton: true,
@@ -41,7 +67,7 @@
             cancelButtonText: 'Cancelar!'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.livewire.emit('quitar');
+                window.livewire.emit('borrar', id);
                 Swal.close();
             }
         });

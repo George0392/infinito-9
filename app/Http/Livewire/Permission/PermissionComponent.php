@@ -40,7 +40,11 @@ class PermissionComponent extends Component
 
     private $lista = 20;
 
-    protected $listeners = ['guardar','actualizar','eliminar'];
+        public $listeners = [
+                        'crear'     =>  'guardar',
+                        'modificar' =>  'actualizar',
+                        'borrar'    =>  'eliminar'
+                        ];
 
 // ***********************************************************
 // Cargar primeras variables
