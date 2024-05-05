@@ -3,7 +3,9 @@
     {{-- Buscador en Vivo --}}
     {{-- ************************************************************************ --}}
     <div class="col">
-        <select  wire:model="role"  class="custom-select">
+        <label>Cargo o Rol:</label>
+        <select class="form-control" data-live-search="true"  wire:model="role" >
+            <span>asdf </span>
             <option value="Elegir" selected>Seleccionar el Cargo o Rol</option>
             @foreach($roles as $role)
             <option value="{{ $role->id }}">{{ $role->name }}</option>

@@ -49,3 +49,11 @@
     // #################################################################
     // Fin Eliminar
     // #################################################################
+
+    //activar buscardor select2
+    // $(document).ready(function() { $("#select").select2(); });
+
+    $(function () {
+  Livewire.restart();
+    $('select').selectpicker();
+});
