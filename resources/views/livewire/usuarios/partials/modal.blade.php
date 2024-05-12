@@ -19,12 +19,12 @@ Por favor espere mientras se guardan los datos...
       </div>
 
       <div class="modal-body">
-       @include('livewire.permission.partials.formulario')
+       @include('livewire.usuarios.partials.formulario')
       </div>
 
     <div class="modal-footer">
 
-            @if($selected_id <1)
+         @if($selected_id <1)
 
          <x-adminlte-button type="button" onclick="Crear()" label="Guardar" theme="outline-primary" icon="fas fa-lg fa-save"/>
 

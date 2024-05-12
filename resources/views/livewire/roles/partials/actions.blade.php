@@ -10,7 +10,7 @@
   Editar
   ################################################################################# --}}
 @can('roles-editar')
-  <a href="javascript:void(0)" wire:click="Editar({{$i->id}})" class="  mr-3  text-secondary" data-toggle="modal" data-target="#Modal_roles" ><i class="fa fa-edit fa-2x mt-2 "></i></a>
+  <a href="javascript:void(0)" wire:click="Editar({{$i->id}})" class="  mr-3  text-secondary" data-toggle="modal" data-target="#Modal" ><i class="fa fa-edit fa-2x mt-2 "></i></a>
 @endcan
   {{-- #################################################################################
   eliminar

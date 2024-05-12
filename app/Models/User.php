@@ -21,8 +21,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'phone',
         'email',
+        'status',
         'password',
+        'image',
     ];
 
     /**
@@ -43,4 +46,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+ // Accessors & mutators para llamarlo colocar {{ i->imagenes}}
+    public function getImagenesAttribute()
+    {
+        if($this->image == null)
+        {
+            return 'noimg.jpg';
+        }
+
+        if (file_exists('img/usuarios' . '/' . $this->image))
+        {
+            return $this->image;
+        }
+        else
+        {
+            return 'noimg.jpg';
+        }
+    }
 }
+
+

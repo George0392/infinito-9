@@ -1,32 +1,38 @@
 <?php
 
-namespace App\Http\Livewire\Obd2;
+namespace App\Http\Livewire\Usuarios;
 
 use Livewire\Component;
-use App\Models\Obd2;
+use App\Models\User;
 
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\Storage;
 
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+
 use Maatwebsite\Excel\Facades\Excel;
 
-use App\Http\Requests\StoreObd2Request;
-use App\Http\Requests\UpdateObd2Request;
+use App\Http\Requests\StoreUsuariosRequest;
+use App\Http\Requests\UpdateUsuariosRequest;
 
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
-use App\Exports\Obd2Export;
+use App\Exports\UsuariosExport;
 
-class Obd2Component extends Component
+use DB;
+
+class UsuariosComponent extends Component
 {
+
 
 // ***********************************************************
 // Variables de entorno
 // ***********************************************************
     use WithFileUploads;
     use WithPagination;
-     use LivewireAlert;
+    use LivewireAlert;
 
     protected $paginationTheme = 'bootstrap';
 
@@ -34,9 +40,9 @@ class Obd2Component extends Component
 // Variables
 // ***********************************************************
 
-    public $codigo, $descripcion, $selected_id, $buscar;
+    public $name, $phone, $email, $password, $status, $image, $selected_id, $role, $fileLoaded, $buscar;
 
-    public $componente = ' Codigos Obd2 ';
+    public $componente = ' Usuarios ';
     public $titulo = 'Listado';
 
     private $lista = 20;
@@ -56,6 +62,7 @@ class Obd2Component extends Component
     {
         $this->componente;
         $this->titulo;
+
     }
 
 // ***********************************************************
@@ -65,11 +72,10 @@ class Obd2Component extends Component
     public function render()
     {
 
-        $total = Obd2::count();
-
-        return view('livewire.obd2.obd2-component',[
-             'obd2' => $this->Buscar(),
-             'total'      => $total
+        return view('livewire.usuarios.usuarios-component',[
+              'usuarios' => $this->Buscar(),
+              'roles'    => Role::orderBy('name','asc')->get(),
+              'total'    => User::count(),
          ])
         ->extends('app2.plantilla')
         ->section('content_body');
@@ -85,12 +91,12 @@ class Obd2Component extends Component
 
         if(strlen($this->buscar) > 0)
 
-            $sql = Obd2::where('codigo', 'like', '%' . $this->buscar . '%')
-                    ->orderBydesc('id')
+            $sql = User::where('name', 'like', '%' . $this->buscar . '%')
+                    ->orderBy('name')
                     ->paginate($this->lista);
         else
 
-            $sql = Obd2::orderBydesc('id')
+            $sql = User::orderBy('name')
                     ->paginate($this->lista);
 
         return $sql;
@@ -116,25 +122,25 @@ class Obd2Component extends Component
 
     protected function reglas_guardar(): array
     {
-    return (new StoreObd2Request())->rules();
+    return (new StoreUsuariosRequest())->rules();
     }
 
     protected function msj_guardar(): array
     {
-    return (new StoreObd2Request())->messages();
+    return (new StoreUsuariosRequest())->messages();
     }
 // ****************************************************************
 // validaciones antes de actualizar
 // ****************************************************************
 
-    // protected function reglas_guardar(): array
+    // protected function reglas_actualizar(): array
     // {
-    // return (new UpdateObd2Request())->rules();
+    // return (new UpdateUsuariosRequest())->rules();
     // }
 
     protected function msj_actualizar(): array
     {
-    return (new UpdateObd2Request())->messages();
+    return (new UpdateUsuariosRequest())->messages();
     }
 
 
@@ -148,7 +154,11 @@ class Obd2Component extends Component
         $this->reset();
         $this->componente ;
         $this->titulo ;
+        $this->image       = null;
+        $this->selected_id = 0;
+
         $this->resetValidation();
+
 
     }
 
@@ -159,19 +169,42 @@ class Obd2Component extends Component
 
     public function guardar()
     {
+        // cambiar en config/filesystems.php la linea local
+        // 'root'   => storage_path('app'), a
+        // 'root'   => public_path(),
 
         $this->validate($this->reglas_guardar(),$this->msj_guardar());
 
-        $obd2 = Obd2::Create([
-            'codigo'      => $this->codigo,
-            'descripcion' => $this->descripcion,
-            ]);
+        $usuarios = User::Create([
+                    'name'     => $this->name,
+                    'phone'    => $this->phone,
+                    'email'    => $this->email,
+                    'password' => bcrypt($this->password),
+                    'status'   => $this->status,
+                                 ]);
+
+         // *************************************************
+
+        $usuarios->assignRole($this->role);
+
+        // *************************************************
+
+        $custom_fileName;
+        if ($this->image)
+        {
+            $custom_fileName = uniqid() . '.' . $this->image->extension();
+            $this->image->storeAs('img/usuarios', $custom_fileName);
+            $usuarios->image = $custom_fileName;
+            $usuarios->save();
+        }
+
+            $this->emit('hide-modal','close');
 
             $this->resetUI();
 
             $this->alert('success', 'Registro Almacenado');
 
-            // return redirect()->route('obd2.index');
+            // return redirect()->route('usuarios.index');
 
 
     }
@@ -182,12 +215,20 @@ class Obd2Component extends Component
 
     public function Editar($id)
     {
-        $sql = Obd2::findOrFail($id);
+        $sql = User::findOrFail($id);
         // dd($sql);
         //campos a rellenar
+
         $this->selected_id = $sql->id;
-        $this->codigo      = $sql->codigo;
-        $this->descripcion = $sql->descripcion;
+        $this->name        = $sql->name;
+        $this->phone       = $sql->phone;
+        $this->email       = $sql->email;
+        $this->password    = $sql->password;
+        $this->status      = $sql->status;
+        $this->image       = null;
+        $this->role        = $sql->getRoleNames();
+
+        $this->emit('show-modal','open');
 
     }
 
@@ -197,23 +238,65 @@ class Obd2Component extends Component
 
     public function actualizar()
     {
+
          $rules =
         [
-            'codigo'      => 'required|string|max:12|unique:obd2,codigo,'.$this->selected_id,
-            'descripcion' => 'required',
+            'name'     => 'required|string|min:3',
+            'phone'    => 'required|string|min:11',
+            'email'    => 'required|string|unique:users,email,'.$this->selected_id,
+            'status'   => 'required|not_in:Elegir',
+            'role'     => 'required|not_in:Elegir',
+            'password' => 'required|min:6',
         ];
 
         $this->validate($rules,$this->msj_actualizar());
 
-            $obd2 = Obd2::find($this->selected_id);
+            $usuarios = User::find($this->selected_id);
 
         // *************************************************
 
-            $obd2->update([
-            'codigo'      => $this->codigo,
-            'descripcion' => $this->descripcion,
+            $usuarios->update([
+                    'name'     => $this->name,
+                    'phone'    => $this->phone,
+                    'email'    => $this->email,
+                    'password' => bcrypt($this->password),
+                    'status'   => $this->status,
 
                 ]);
+
+        // *************************************************
+
+        if ($this->image)
+            {
+                $custom_fileName   = uniqid() . '.' . $this->image->extension();
+                $this->image->storeAs('img/usuarios', $custom_fileName);
+            // guardar nombre de image anterior
+                $image_name = $usuarios->image;
+
+                $usuarios->image = $custom_fileName;
+                $usuarios->save();
+
+                // eliminar basura (image anterior)
+                if ($image_name != null)
+                {
+                    if (file_exists('img/usuarios' . '/' . $image_name))
+                    {
+                        unlink('img/usuarios' . '/' . $image_name);
+
+                    }
+
+                }
+
+            }
+
+             // *************************************************
+            // eliminar rol anterior
+        DB::table('model_has_roles')->where('model_id',$this->selected_id)->delete();
+
+         // asignar nuevo rol
+        $usuarios->assignRole($this->role);
+
+            $this->emit('hide-modal','close');
 
             $this->resetUI();
 
@@ -228,8 +311,8 @@ class Obd2Component extends Component
     public function eliminar($id)
     {
 
-            $obd2 = Obd2::find($id);
-            $obd2->delete();
+            $usuarios = User::find($id);
+            $usuarios->delete();
 
             $this->alert('success', 'Registro Eliminado');
             $this->resetUI();
@@ -243,26 +326,26 @@ class Obd2Component extends Component
     public function excel()
     {
         // para generar el archivo se debe colocar:
-        // php artisan make:export Obd2Export --model=Obd2
+        // php artisan make:export UsuariosExport --model=Usuarios
         // luego ir a app/Exports y crear la consulta en el archivo creado
 
         $this->alert('success', 'Registros exportados a Excel con Exito', [
                         'position' => 'center'
                     ]);
-        return Excel::download(new Obd2Export,'listado_obd2.xlsx');
+        return Excel::download(new UsuariosExport,'listado_usuarios.xlsx');
     }
 
     public function csv()
     {
         // para generar el archivo se debe colocar:
-        // php artisan make:export Obd2Export --model=Obd2
+        // php artisan make:export UsuariosExport --model=Usuarios
         // luego ir a app/Exports y crear la consulta en el archivo creado
 
         $this->alert('success', 'Registros exportados a CSV con Exito', [
                         'position' => 'center'
                     ]);
 
-       return (new Obd2Export)->download('listado_categorias.csv', \Maatwebsite\Excel\Excel::CSV, ['Content-Type' => 'text/csv',]);
+       return (new UsuariosExport)->download('listado_categorias.csv', \Maatwebsite\Excel\Excel::CSV, ['Content-Type' => 'text/csv',]);
 
 
     }

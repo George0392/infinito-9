@@ -13,6 +13,7 @@ use App\Http\Livewire\Obd2\Obd2Component;
 use App\Http\Livewire\Roles\RolesComponent;
 use App\Http\Livewire\Permission\PermissionComponent;
 use App\Http\Livewire\AsignarPermisos\AsignarComponent;
+use App\Http\Livewire\Usuarios\UsuariosComponent;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -31,6 +32,8 @@ Route::get('Permisos_infinito', PermissionComponent::class)->middleware('auth')-
 
 Route::get('Asignar_Permisos', AsignarComponent::class)->middleware('auth')->name('asignar.live');
 
+Route::get('Usuarios', UsuariosComponent::class)->middleware('auth')->name('usuarios.live');
+
 // ###############################################################
 //                         rutas de seguridad
 // ###############################################################
@@ -38,7 +41,7 @@ Route::get('Asignar_Permisos', AsignarComponent::class)->middleware('auth')->nam
 Route::group(['middleware' => ['auth']], function () {
 
 Route::resource('roles', RolesController::class);
-Route::resource('usuarios', UsuariosController::class);
+Route::resource('usuarios_normal', UsuariosController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('inicio');
 

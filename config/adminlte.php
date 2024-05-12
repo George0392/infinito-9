@@ -16,129 +16,111 @@ return [
 
     'menu' => [
         // Navbar items:
-        [
+            [
             'type'         => 'navbar-search',
             'text'         => 'search',
             'topnav_right' => false,
-        ],
-        [
+            ],
+            [
             'type'         => 'fullscreen-widget',
             'topnav_right' => true,
-        ],
+            ],
 
         // Sidebar items:
-        [
+            [
             'text'        => 'Inicio',
             'url'         => 'home',
             'icon'        => 'fa fa-fw fa-home',
             'label_color' => 'success',
-        ],
+            ],
         // ['header' => 'Menu Acciones'],
-        [
+            [
             'text'  => 'Obd2 livewire',
             'route' => 'obd2.live',
             'icon'  => 'fas fa-fw fa-tags',
             'can'   => 'obd2-abrir',
-        ],
+            ],
 
-        [
+            [
             'text'  => 'Reportes Obd2 ',
             'route' => 'obd2.index',
             'icon'  => 'fas fa-fw fa-tags',
-        ],
-
-
-
+            ],
 
         [
-            'text'    => 'SysAdmin',
-            'icon'    => 'fas fa-fw fa-cogs',
-            'submenu' => [
-                [
-                    'text' => 'Importar',
-                    'url'  => 'Importar/import',
+                    'text'    => 'SysAdmin',
                     'icon'    => 'fas fa-fw fa-cogs',
-                ],
+                    'submenu' => [
+                    [
+                    'text'    => 'Importar',
+                    'url'     => 'Importar/import',
+                    'icon'    => 'fas fa-fw fa-cogs',
+                    ],
+
+                         [
+                         'text'    => 'Seguridad',
+                         'url'     => '#',
+                         'icon'    => 'fas fa-fw fa-lock',
+                         'submenu' => [
+                         [
+                         'text'    => 'Roles o Cargos',
+                         'route'   => 'roles.live',
+                         'icon'    => 'fas fa-fw fa-cogs',
+                         'can'     => 'roles-abrir',
+                         ],
+
+                         [
+                         'text'    => 'Permisos',
+                         'route'   => 'permisos.live',
+                         'icon'    => 'fas fa-fw fa-key',
+                         'can'     => 'permisos-abrir',
+                         ],
+
+                         [
+                         'text'    => 'Asignar Permisos',
+                         'route'   => 'asignar.live',
+                         'icon'    => 'fas fa-fw fa-edit',
+                         'can'     => 'asignar-abrir',
+                         ],
+
+                         [
+                         'text'    => 'Usuarios',
+                         'route'   => 'usuarios.live',
+                         'icon'    => 'fas fa-fw fa-users',
+                         'can'     => 'usuarios-abrir',
+                         ],
+
+                         ],
+                         ],
 
                 // [
-                //     'text' => 'Roles y Permisos',
-                //     'url'  => 'roles',
-                //     'icon'    => 'fas fa-fw fa-lock',
+                //     'text'    => 'level_one',
+                //     'url'     => '#',
+                //     'submenu' => [
+                //         [
+                //             'text' => 'level_two',
+                //             'url'  => '#',
+                //         ],
+                //         [
+                //             'text'    => 'level_two',
+                //             'url'     => '#',
+                //             'submenu' => [
+                //                 [
+                //                     'text' => 'level_three',
+                //                     'url'  => '#',
+                //                 ],
+                //                 [
+                //                     'text' => 'level_three',
+                //                     'url'  => '#',
+                //                 ],
+                //             ],
+                //         ],
+                //     ],
                 // ],
-
-
-                [
-                    'text'    => 'Seguridad',
-                    'url'     => '#',
-                    'icon'  => 'fas fa-fw fa-lock',
-                    'submenu' => [
-                         [
-            'text'  => 'Roles o Cargos',
-            'route' => 'roles.live',
-            'icon'  => 'fas fa-fw fa-cogs',
-            'can'   => 'roles-abrir',
-        ],
-
-        [
-            'text'  => 'Permisos',
-            'route' => 'permisos.live',
-            'icon'  => 'fas fa-fw fa-key',
-            'can'   => 'permisos-abrir',
-        ],
-
-        [
-            'text'  => 'Asignar Permisos',
-            'route' => 'asignar.live',
-            'icon'  => 'fas fa-fw fa-edit',
-            'can'   => 'asignar-abrir',
-        ],
-
-        [
-            'text'  => 'Usuarios live',
-            'route' => 'asignar.live',
-            'icon'  => 'fas fa-fw fa-users',
-            'can'   => 'usuarios-abrir',
-        ],
-
-                    ],
-                ],
-
-                [
-                    'text' => 'Usuarios',
-                    'url'  => 'usuarios',
-                    'icon'    => 'fas fa-fw fa-users',
-                ],
-
-
-
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
+                // [
+                //     'text' => 'level_one',
+                //     'url'  => '#',
+                // ],
             ],
         ],
     ],

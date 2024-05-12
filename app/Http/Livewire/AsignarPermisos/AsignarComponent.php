@@ -98,9 +98,9 @@ public $listeners = ['permisos'=>'Sincronizar_Todos',
         }
 
         return view('livewire.asignar-permisos.asignar-component',[
-            'roles' => Role::orderBy('name','asc')->get(),
-             'permisos'      => $permisos,
-             'total'      => $total,
+             'roles'    => Role::orderBy('name','asc')->get(),
+             'permisos' => $permisos,
+             'total'    => $total,
          ])
         ->extends('app2.plantilla')
         ->section('content_body');

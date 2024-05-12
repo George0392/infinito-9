@@ -18,7 +18,7 @@ class UsuariosController extends Controller
 
     public function index()
     {
-        $usuarios = User::select('id','name','email')
+        $usuarios = User::select('id','name','phone','email')
         ->where('name', 'like', '%'.Input::get('searchtext').'%')
         ->orWhere('email', 'like', '%'.Input::get('searchtext').'%')
         ->orderBy('id')

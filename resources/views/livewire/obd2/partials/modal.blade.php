@@ -1,4 +1,4 @@
-<div wire:ignore.self  class="modal fade " size="lg" id="Modal_obd2" tabindex="-1" role="dialog" >
+<div wire:ignore.self  class="modal fade " size="lg" id="Modal" tabindex="-1" role="dialog" >
 
   <div class="modal-dialog modal-dialog-centered modal-lg " role="document">
     <div class="modal-content">

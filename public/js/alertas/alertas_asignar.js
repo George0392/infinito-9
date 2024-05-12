@@ -50,10 +50,5 @@
     // Fin Eliminar
     // #################################################################
 
-    //activar buscardor select2
-    // $(document).ready(function() { $("#select").select2(); });
-
-    $(function () {
-  Livewire.restart();
+    //activar buscardor select-bootstrap
     $('select').selectpicker();
-});

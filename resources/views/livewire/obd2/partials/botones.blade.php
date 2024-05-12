@@ -3,7 +3,7 @@
     <span wire:loading wire:target="csv" class="alert text-danger"> Cargando datos para exportar CSV...</span>
     <span wire:loading wire:target="lista_pdf" class="alert text-success"> Cargando datos para exportar PDF...</span>
     @can('obd2-crear')
-    <x-adminlte-button class="float-right mr-2" type="reset" label="" theme="outline-primary" icon="fas fa-lg fa-plus" data-toggle="modal" data-target="#Modal_obd2" />
+    <x-adminlte-button class="float-right mr-2" type="reset" label="" theme="outline-primary" icon="fas fa-lg fa-plus" data-toggle="modal" data-target="#Modal" />
     @endcan
     <div class="btn-group  mr-2 float-right" role="group" aria-label="Basic example">
         {{-- Boton Exportar --}}

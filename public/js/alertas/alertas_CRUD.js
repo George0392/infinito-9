@@ -1,4 +1,29 @@
     // #################################################################
+    // Modales
+    // #################################################################
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        window.livewire.on('user-added', Msg => {
+            $('#Modal').modal('hide')
+        })
+
+         window.livewire.on('user-updated', Msg => {
+            $('#Modal').modal('hide')
+        })
+
+         window.livewire.on('hide-modal', Msg => {
+            $('#Modal').modal('hide')
+        })
+
+         window.livewire.on('show-modal', Msg => {
+            $('#Modal').modal('show')
+        })
+
+
+    });
+
+    // #################################################################
     // Crear
     // #################################################################
 
